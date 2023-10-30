@@ -5,10 +5,10 @@ import telebot
 ##TOKEN DETAILS
 TOKEN = "TRON"
 
-BOT_TOKEN = "5710284858:AAHcIDYAtWAC01p8BsHRl4cIwhcKpBqNlTQ"
-PAYMENT_CHANNEL = "@testpostchnl" #add payment channel here including the '@' sign
-OWNER_ID = 5151868182 #write owner's user id here.. get it from @MissRose_Bot by /id
-CHANNELS = ["@testpostchnl"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
+BOT_TOKEN = "6739391347:AAHfrRL9qkLrJwyzidawglmikthQ75yRv1I"
+PAYMENT_CHANNEL = "@jseygt" #add payment channel here including the '@' sign
+OWNER_ID = 6493106911 #write owner's user id here.. get it from @MissRose_Bot by /id
+CHANNELS = ["@jseygt"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
               #you can add as many channels here and also add the '@' sign before channel username
 Daily_bonus = 1 #Put daily bonus amount here!
 Mini_Withdraw = 0.5  #remove 0 and add the minimum withdraw u want to set
@@ -116,7 +116,7 @@ def query_handler(call):
             user_id = call.message.chat.id
             user = str(user_id)
             bot.answer_callback_query(
-                callback_query_id=call.id, text='✅ You joined Now yu can earn money')
+                callback_query_id=call.id, text='✅ You joined Now you can earn money')
             bot.delete_message(call.message.chat.id, call.message.message_id)
             if user not in data['refer']:
                 data['refer'][user] = True
