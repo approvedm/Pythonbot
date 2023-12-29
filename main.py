@@ -5,14 +5,14 @@ import telebot
 ##TOKEN DETAILS
 TOKEN = "TRON"
 
-BOT_TOKEN = "6739391347:AAHfrRL9qkLrJwyzidawglmikthQ75yRv1I"
-PAYMENT_CHANNEL = "@jseygt" #add payment channel here including the '@' sign
-OWNER_ID = 6493106911 #write owner's user id here.. get it from @MissRose_Bot by /id
-CHANNELS = ["@jseygt"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
+BOT_TOKEN = "6907369450:AAHVDSCYCJgZIXQTc7BGF-wpce26x4zaPMo"
+PAYMENT_CHANNEL = "@foronlyvq" #add payment channel here including the '@' sign
+OWNER_ID = 6711719377 #write owner's user id here.. get it from @MissRose_Bot by /id
+CHANNELS = ["@foronlyvq"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
               #you can add as many channels here and also add the '@' sign before channel username
-Daily_bonus = 1 #Put daily bonus amount here!
+Daily_bonus = 100 #Put daily bonus amount here!
 Mini_Withdraw = 0.5  #remove 0 and add the minimum withdraw u want to set
-Per_Refer = 0.0001 #add per refer bonus here
+Per_Refer = 0.1 #add per refer bonus here
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
@@ -98,7 +98,7 @@ def start(message):
         markups = telebot.types.InlineKeyboardMarkup()
         markups.add(telebot.types.InlineKeyboardButton(
             text='🤼‍♂️ Joined', callback_data='check'))
-        msg_start = "*🍔 To Use This Bot You Need To Join This Channel - \n➡️ @jseygt*"
+        msg_start = "*🍔 To Use This Bot You Need To Join This Channel - \n➡️ @foronlyvq*"
         bot.send_message(user, msg_start,
                          parse_mode="Markdown", reply_markup=markups)
    except:
@@ -154,7 +154,7 @@ def query_handler(call):
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(
                 text='🤼‍♂️ Joined', callback_data='check'))
-            msg_start = "*🍔 To Use This Bot You Need To Join This Channel - \n➡️ @jseygt*" #change here 191 & 157
+            msg_start = "*🍔 To Use This Bot You Need To Join This Channel - \n➡️ @foronlyvq*" #change here 191 & 157
             bot.send_message(call.message.chat.id, msg_start,
                              parse_mode="Markdown", reply_markup=markup)
    except:
