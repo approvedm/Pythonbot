@@ -289,49 +289,57 @@ def trx_address(message):
         bot.send_message(OWNER_ID, "Your bot got an error fix it fast!\n Error on command: "+message.text)
         return
 
+
+
 def amo_with(message):
-   try:
-    user_id = message.chat.id
-    amo = message.text
-    user = str(user_id)
-    data = json.load(open('users.json', 'r'))
-    if user not in data['balance']:
-        data['balance'][user] = 0
-    if user not in data['wallet']:
-        data['wallet'][user] = "none"
-    json.dump(data, open('users.json', 'w'))
+    try:
+        user_id = message.chat.id
+        amo = int(message.text)
+        user = str(user_id)
 
-    bal = data['balance'][user]
-    wall = data['wallet'][user]
-    msg = message.text
-    if msg.isdigit() == False:
-        bot.send_message(
-            user_id, "_📛 Invaild value. Enter only numeric value. Try again_", parse_mode="Markdown")
-        return
-    if int(message.text) < Mini_Withdraw:
-        bot.send_message(
-            user_id, f"_❌ Minimum withdraw {Mini_Withdraw} {TOKEN}_", parse_mode="Markdown")
-        return
-    if int(message.text) > bal:
-        bot.send_message(
-            user_id, "_❌ You Can't withdraw More than Your Balance_", parse_mode="Markdown")
-        return
-    amo = int(amo)
-    data['balance'][user] -= int(amo)
-    data['totalwith'] += int(amo)
-    bot_name = bot.get_me().username
-    json.dump(data, open('users.json', 'w'))
-    bot.send_message(user_id, "✅* Withdraw is request to our owner automatically\n\n💹 Payment Channel :- "+PAYMENT_CHANNEL +"*", parse_mode="Markdown")
+        data = json.load(open('users.json', 'r'))
+        if user not in data['balance']:
+            data['balance'][user] = 0
+        if user not in data['wallet']:
+            data['wallet'][user] = "none"
 
-    markupp = telebot.types.InlineKeyboardMarkup()
-    markupp.add(telebot.types.InlineKeyboardButton(text='🍀 BOT LINK', url=f'https://telegram.me/{bot_name}?start={OWNER_ID}'))
+        json.dump(data, open('users.json', 'w'))
 
-    send = bot.send_message(PAYMENT_CHANNEL,  "✅* New Withdraw\n\n⭐ Amount - "+str(amo)+f" {TOKEN}\n🦁 User - @"+message.from_user.username+"\n💠 Wallet* - `"+data['wallet'][user]+"`\n☎️ *User Referrals = "+str(
-        data['referred'][user])+"\n\n🏖 Bot Link - @"+bot_name+"\n⏩ Please wait our owner will confrim it*", parse_mode="Markdown", disable_web_page_preview=True, reply_markup=markupp)
-   except:
-        bot.send_message(message.chat.id, "This command having error pls wait for ficing the glitch by admin")
-        bot.send_message(OWNER_ID, "Your bot got an error fix it fast!\n Error on command: "+message.text)
-        return
+        bal = data['balance'][user]
+        wall = data['wallet'][user]
+
+        if not amo.isdigit():
+            bot.send_message(user_id, "_📛 Invalid value. Enter only numeric value. Try again_", parse_mode="Markdown")
+            return
+
+        if amo < Mini_Withdraw:
+            bot.send_message(user_id, f"_❌ Minimum withdraw {Mini_Withdraw} {TOKEN}_", parse_mode="Markdown")
+            return
+
+        if amo > bal:
+            bot.send_message(user_id, "_❌ You can't withdraw more than your balance_", parse_mode="Markdown")
+            return
+
+        data['balance'][user] -= amo
+        data['totalwith'] += amo
+
+        bot_name = bot.get_me().username
+        json.dump(data, open('users.json', 'w'))
+
+        bot.send_message(user_id, "✅* Withdraw request sent to our owner automatically\n\n💹 Payment Channel: " + PAYMENT_CHANNEL + "*", parse_mode="Markdown")
+
+        markupp = telebot.types.InlineKeyboardMarkup()
+        markupp.add(telebot.types.InlineKeyboardButton(text='🍀 BOT LINK', url=f'https://telegram.me/{bot_name}?start={OWNER_ID}'))
+
+        send = bot.send_message(PAYMENT_CHANNEL, f"✅* New Withdraw\n\n⭐ Amount - {amo} {TOKEN}\n🦁 User - @{message.from_user.username}\n💠 Wallet* - `{data['wallet'][user]}`\n☎️ *User Referrals = {data['referred'][user]}\n\n🏖 Bot Link - @{bot_name}\n⏩ Please wait, our owner will confirm it*", parse_mode="Markdown", disable_web_page_preview=True, reply_markup=markupp)
+    except Exception as e:
+        # Log the error
+        print(f"Error in amo_with: {e}")
+        bot.send_message(message.chat.id, "This command has an error. Please wait for fixing the glitch by admin.")
+        bot.send_message(OWNER_ID, f"Your bot encountered an error. Fix it fast!\nError on command: {message.text}")
+
+# You may need to define Mini_Withdraw, bot, PAYMENT_CHANNEL, and OWNER_ID variables elsewhere in your code.
+
 
 if __name__ == '__main__':
     bot.polling(none_stop=True)
