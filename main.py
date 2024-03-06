@@ -8,7 +8,7 @@ TOKEN = "TRON"
 BOT_TOKEN = "6552879262:AAEfXY71tegNPGfofsqFqPzvVoc_kUDOr8c"
 PAYMENT_CHANNEL = "@selfserverBo" #add payment channel here including the '@' sign
 OWNER_ID = 6743864474 #write owner's user id here.. get it from @MissRose_Bot by /id
-CHANNELS = ["@foronlyvq"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
+CHANNELS = ["@selfserverBo"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
               #you can add as many channels here and also add the '@' sign before channel username
 Daily_bonus = 1 #Put daily bonus amount here!
 Mini_Withdraw = 0.5  #remove 0 and add the minimum withdraw u want to set
